@@ -20,7 +20,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Network, Alchemy } from "alchemy-sdk";
 import { ethers } from "ethers";
-import { configDataType, configType } from "../../../types/types";
+import {
+  configDataType,
+  configType,
+  methods,
+  networks,
+} from "../../../types/types";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 
@@ -46,7 +51,7 @@ export interface TokenGatingWrapperProps {
   children: ReactNode;
 }
 // for next Only
-export const TokenGatingWrapper = ({
+const TokenGatingWrapper = ({
   config,
   alchemyApiKey,
   children,
@@ -238,13 +243,13 @@ export const TokenGatingWrapper = ({
         return;
       }
 
-      const finalNetwork = getNetwork(configData.network);
+      const finalNetwork = getNetwork(configData.network.toString());
       if (!finalNetwork) return;
 
       // console.log(configData);
 
       // // checking the conditions of the method Applied and
-      if (configData.methodName == "NFTWithTokenID") {
+      if (configData.methodName == methods.NFTWithTokenID) {
         if (!configData.data.tokenId) {
           console.log("INCORRECT INPUT DATA");
           return;
@@ -256,14 +261,14 @@ export const TokenGatingWrapper = ({
           finalNetwork,
           alchemyApiKey
         );
-      } else if (configData.methodName == "NFTCollection") {
+      } else if (configData.methodName == methods.NFTCollection) {
         response = await checkNFTCollection(
           address,
           configData.data.contractAddress,
           finalNetwork,
           alchemyApiKey
         );
-      } else if (configData.methodName == "TOKEN") {
+      } else if (configData.methodName == methods.TOKEN) {
         response = await checkToken(
           address,
           configData.data.contractAddress,
@@ -271,7 +276,7 @@ export const TokenGatingWrapper = ({
           finalNetwork,
           alchemyApiKey
         );
-      } else if (configData.methodName == "TOKENwithAmount") {
+      } else if (configData.methodName == methods.TOKENwithAmount) {
         if (!configData.data.amount) {
           console.log("INCORRECT INPUT DATA");
           return;
@@ -332,6 +337,8 @@ export const TokenGatingWrapper = ({
     </WagmiConfig>
   );
 };
+
+export default TokenGatingWrapper;
 
 export const TokenGatingUI = () => {
   return (
