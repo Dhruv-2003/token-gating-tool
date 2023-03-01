@@ -17,7 +17,7 @@ import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Network, Alchemy } from "alchemy-sdk";
 import { ethers } from "ethers";
 import {
@@ -57,6 +57,8 @@ const TokenGatingWrapper = ({
   children,
 }: TokenGatingWrapperProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const { address } = useAccount();
   const [authorised, setAuthorised] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -303,9 +305,7 @@ const TokenGatingWrapper = ({
         setRestricted(true);
         setAuthorised(false);
         setLoading(false);
-        // void router.push({
-        //   pathname: "/restricted",
-        // });
+        // void navigate("./restricted");
       }
     } else {
       setLoading(false);
