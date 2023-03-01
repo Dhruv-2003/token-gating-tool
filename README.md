@@ -35,3 +35,11 @@ Or Create a full scale data base , to check the URL and assign the conditions
 ## LINKS
 
 https://www.w3schools.com/howto/howto_js_get_url.asp
+
+## Questions
+
+- I got into them , because implementing the code as a developer is very easy to do , but doing the same for others to integrate comes up with a lot of other things.
+- What type of webpage it should support ?? Are Next and React Just Fine , these are actually some router issues ?
+- There will be some extra steps involved for the Client to integrate the same into the website , is that okay , for best wallet integrations and support the perfect chains ? I am thinking of using Rainbowkit , wagmi here
+- Is it okay if we implement a config file method , where user would create a config file along with the steps involved in the docs ?? There will be not interface here , just the component and the docs to configure the same , this approach would not take much time to implement
+- If we want to go the other way , where we build something that is applicable for all types of application , it is quite hard to implement and check every case , the comp might break in that case , moreover there will be time lag , in this thing to check and implement
