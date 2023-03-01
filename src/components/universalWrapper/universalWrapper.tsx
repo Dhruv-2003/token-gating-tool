@@ -17,7 +17,6 @@ import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from "alchemy-sdk";
 import { ethers } from "ethers";
 import {
@@ -56,7 +55,6 @@ const TokenGatingWrapper = ({
   alchemyApiKey,
   children,
 }: TokenGatingWrapperProps) => {
-  const location = useLocation();
   const { address } = useAccount();
   const [authorised, setAuthorised] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -218,7 +216,7 @@ const TokenGatingWrapper = ({
     let response: Boolean | undefined;
     let configData: configDataType | undefined;
     // check path , check if there is any config , then call according to the method
-    const path = location.pathname.split("?")[0];
+    const path = window.location.pathname.split("?")[0];
     console.log(path);
 
     if (
@@ -303,9 +301,7 @@ const TokenGatingWrapper = ({
         setRestricted(true);
         setAuthorised(false);
         setLoading(false);
-        // void router.push({
-        //   pathname: "/restricted",
-        // });
+        void window.location.assign("./restricted");
       }
     } else {
       setLoading(false);
@@ -325,7 +321,7 @@ const TokenGatingWrapper = ({
     //   router.events.off("routeChangeStart", preventAccess);
     //   router.events.off("routeChangeComplete", authCheck);
     // };
-  }, [location, address, authorised, chain]);
+  }, [window.location, address, authorised, chain]);
 
   return (
     <WagmiConfig client={wagmiClient}>

@@ -34,11 +34,10 @@
     "alchemy-sdk": "^2.5.0",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.2",
-    "react-dom": "^18.2.0",
-    "wagmi": "^0.11.7"
-  },
-  "peerDependencies": {
+    "next": "^13.2.2",
     "react": "^18.2.0",
-    "next": "^13.2.2"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.2",
+    "wagmi": "^0.11.7"
   }
 }
