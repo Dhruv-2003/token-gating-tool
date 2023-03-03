@@ -43,6 +43,8 @@ export default [
     external: [
       "react",
       "react-dom",
+      "react-router-dom",
+      "next",
       "@rainbow-me/rainbowkit",
       "alchemy-sdk",
       "ethers",
