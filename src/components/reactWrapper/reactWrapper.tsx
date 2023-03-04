@@ -18,7 +18,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from "alchemy-sdk";
-import { configDataType, configType, methods } from "../../../types/types";
+import { configDataType, configType, methods } from "../config/index";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 

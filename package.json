@@ -4,12 +4,14 @@
   "description": "A token gating SDK to restrict access to Next and React Application for NFT and Token Holders",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "type": "module",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rollup": "rollup -c",
+    "rollup": "rollup -c --bundleConfigAsCjs",
     "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --moudle CommonJS --outDir dist/cjs"

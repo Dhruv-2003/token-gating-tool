@@ -7,6 +7,7 @@
     "strict": true,
 
     // Added
+    "rootDir": "src",
     "lib": ["ES5", "ES2015", "ES2016", "dom", "ESNext"],
     "types": ["node"],
     "jsx": "react",
