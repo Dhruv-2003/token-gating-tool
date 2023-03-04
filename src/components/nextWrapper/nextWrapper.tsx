@@ -18,7 +18,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Network, Alchemy } from "alchemy-sdk";
-import { configDataType, configType, methods } from "../config/index";
+import { configDataType, configType, methods, networks } from "../config/index";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 
@@ -56,13 +56,27 @@ export const TokenGatingWrapper: React.FunctionComponent<
   const [showConnectModel, setShowConnectModel] = useState(false);
   const { chain, chains } = useNetwork();
 
+  const getChainName = (chainType: networks) => {
+    if (chainType == networks.Ethereum) {
+      return "Ethereum";
+    } else if (chainType == networks.Polygon) {
+      return "Polygon";
+    } else if (chainType == networks.Optimism) {
+      return "Optimism";
+    } else if (chainType == networks["Arbitrum One"]) {
+      return "Arbitrum One";
+    } else {
+      return "Ethereum";
+    }
+  };
+
   const getNetwork = (chainName: string) => {
-    // console.log(chainName);
+    console.log(chainName);
     if (!chainName) {
       return;
     }
     const currentChainName = chain?.name;
-    // console.log(currentChainName);
+    console.log(currentChainName);
     // console.log(chains);
     if (currentChainName != chainName) {
       const chainId = chains?.find((v) => {
@@ -235,10 +249,10 @@ export const TokenGatingWrapper: React.FunctionComponent<
         return;
       }
 
-      const finalNetwork = getNetwork(configData.network.toString());
-      if (!finalNetwork) return;
-
       // console.log(configData);
+      const chainName: string = getChainName(configData.network);
+      const finalNetwork = getNetwork(chainName);
+      if (!finalNetwork) return;
 
       // // checking the conditions of the method Applied and
       if (configData.methodName == methods.NFTWithTokenID) {

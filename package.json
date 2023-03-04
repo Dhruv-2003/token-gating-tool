@@ -2,24 +2,16 @@
   "name": "token-gating-sdk",
   "version": "1.0.6",
   "description": "A token gating SDK to restrict access to Next and React Application for NFT and Token Holders",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/esm/index.js",
   "types": "./dist/index.d.ts",
+  "import": "dist/esm/index.js",
+  "type": "module",
   "files": [
     "dist"
   ],
-  "exports": {
-    "node": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/cjs/index.js"
-    },
-    "package.json": "./package.json",
-    "default": "./dist/esm/index.js"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rollup": "rollup -c --bundleConfigAsCjs",
+    "rollup": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
     "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --moudle CommonJS --outDir dist/cjs"

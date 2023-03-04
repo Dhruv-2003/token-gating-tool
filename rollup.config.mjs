@@ -16,12 +16,6 @@ export default [
     output: [
       {
         file: packageJson.main,
-        format: "cjs",
-        sourcemap: true,
-        // dir: "dist/cjs",
-      },
-      {
-        file: packageJson.module,
         format: "esm",
         sourcemap: true,
         // dir: "dist/esm",
