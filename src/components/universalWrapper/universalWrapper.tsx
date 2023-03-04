@@ -10,7 +10,6 @@ import {
   createClient,
   useAccount,
   useNetwork,
-  useSwitchNetwork,
   WagmiConfig,
 } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
@@ -18,13 +17,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
 import { Network, Alchemy } from "alchemy-sdk";
-import { ethers } from "ethers";
-import {
-  configDataType,
-  configType,
-  methods,
-  networks,
-} from "../../../types/types";
+import { configDataType, configType, methods } from "../../../types/types";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 
@@ -76,7 +69,7 @@ const TokenGatingWrapper = ({
           return v;
         }
       })?.id;
-      // console.log(chainId);
+      console.log(chainId);
       setLoading(false);
       setShowConnectModel(true);
       console.log("WRONG NETWORK DETECETED");
@@ -312,8 +305,7 @@ const TokenGatingWrapper = ({
   useEffect(() => {
     authCheck();
 
-    const preventAccess = () => setAuthorised(false);
-
+    // const preventAccess = () => setAuthorised(false);
     // router.events.on("routeChangeStart", preventAccess);
     // router.events.on("routeChangeComplete", authCheck);
 
@@ -329,6 +321,7 @@ const TokenGatingWrapper = ({
         {showConnectModel && <ConnectButton />}
         {loading && <a>Loading .....</a>}
         {children}
+        {restricted && <a>Restricted ...</a>}
       </RainbowKitProvider>
     </WagmiConfig>
   );

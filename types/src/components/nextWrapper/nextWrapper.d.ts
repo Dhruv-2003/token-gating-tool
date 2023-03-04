@@ -1,11 +1,10 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configType } from "../../../types/types";
-export interface TokenGatingWrapperProps {
+export interface ITokenGatingWrapperProps {
     config: configType;
     alchemyApiKey: string;
     children: ReactNode;
 }
-declare const TokenGatingWrapper: ({ config, alchemyApiKey, children, }: TokenGatingWrapperProps) => JSX.Element;
-export default TokenGatingWrapper;
+export declare const TokenGatingWrapper: React.FunctionComponent<ITokenGatingWrapperProps>;
 export declare const TokenGatingUI: () => JSX.Element;

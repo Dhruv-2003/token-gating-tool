@@ -1,23 +1,26 @@
 {
   "compilerOptions": {
     // Default
-    "target": "es5",
+    "target": "ES6",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true,
 
     // Added
+    "lib": ["ES5", "ES2015", "ES2016", "dom", "ESNext"],
+    "types": ["node"],
     "jsx": "react",
-    "module": "ESNext",
+    "module": "ES2015",
     "declaration": true,
     "declarationDir": "types",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "dist/esm",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["**/*"]
+  "include": ["src/**/**/*.ts", "src/**/**/*.tsx"]
 }

@@ -2,16 +2,18 @@
   "name": "token-gating-sdk",
   "version": "1.0.1",
   "description": "A token gating SDK to restrict access to Next and React Application for NFT and Token Holders",
-  "main": "src/index.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "type": "module",
-  "source": "src/index.ts",
   "files": [
-    "src/**/**/*"
+    "dist/**/**/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rollup -c",
-    "build": "tsup src/index.ts"
+    "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --moudle CommonJS --outDir dist/cjs"
   },
   "author": "Dhruv Agarwal",
   "keywords": [],
@@ -19,11 +21,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Dhruv-2003/token-gating-demoApp"
-  },
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    }
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
@@ -52,5 +49,10 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "wagmi": "^0.11.7"
+  },
+  "peerDependencies": {
+    "next": "^13.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

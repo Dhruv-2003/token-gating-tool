@@ -1,6 +1,5 @@
-export { default as NextGatingWrapper } from "./nextWrapper";
-export { NextWrapperProps } from "./nextWrapper";
+export * from "./nextWrapper";
 export { default as ReactGatingWrapper } from "./reactWrapper";
 export { default as UniversalGatingWrapper } from "./universalWrapper";
 
-// export { methods, networks, configDataType, configType } from "./config";
+export * from "./config";
