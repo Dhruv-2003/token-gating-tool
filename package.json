@@ -1,6 +1,6 @@
 {
   "name": "token-gating-sdk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A token gating SDK to restrict access to Next and React Application for NFT and Token Holders",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
