@@ -12,9 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
-    "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --moudle CommonJS --outDir dist/cjs"
+    "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs"
   },
   "author": "Dhruv Agarwal",
   "keywords": [],

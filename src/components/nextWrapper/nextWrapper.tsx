@@ -49,10 +49,11 @@ export const TokenGatingWrapper: React.FunctionComponent<
   ITokenGatingWrapperProps
 > = ({ config, alchemyApiKey, children }) => {
   const router = useRouter();
+
   const { address } = useAccount();
   const [authorised, setAuthorised] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [restricted, setRestricted] = useState(true);
+  const [restricted, setRestricted] = useState(false);
   const [showConnectModel, setShowConnectModel] = useState(false);
   const { chain, chains } = useNetwork();
 
@@ -71,12 +72,12 @@ export const TokenGatingWrapper: React.FunctionComponent<
   };
 
   const getNetwork = (chainName: string) => {
-    console.log(chainName);
+    // console.log(chainName);
     if (!chainName) {
       return;
     }
     const currentChainName = chain?.name;
-    console.log(currentChainName);
+    // console.log(currentChainName);
     // console.log(chains);
     if (currentChainName != chainName) {
       const chainId = chains?.find((v) => {
@@ -309,9 +310,9 @@ export const TokenGatingWrapper: React.FunctionComponent<
         setRestricted(true);
         setAuthorised(false);
         setLoading(false);
-        void router.push({
-          pathname: "/restricted",
-        });
+        // void router.push({
+        //   pathname: "/restricted",
+        // });
       }
     } else {
       setLoading(false);

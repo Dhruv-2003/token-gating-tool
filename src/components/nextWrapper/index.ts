@@ -1,2 +1,3 @@
 export { TokenGatingWrapper as NextGatingWrapper } from "./nextWrapper";
-export * from "./nextWrapper";
+export { ITokenGatingWrapperProps as NextGatingProps } from "./nextWrapper";
+// export * from "./nextWrapper";

@@ -18,7 +18,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from "alchemy-sdk";
-import { configDataType, configType, methods } from "../config/index";
+import { configDataType, configType, methods, networks } from "../config/index";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 
@@ -38,26 +38,38 @@ const wagmiClient = createClient({
   provider,
 });
 
-export interface TokenGatingWrapperProps {
+export interface ITokenGatingWrapperProps {
   config: configType;
   alchemyApiKey: string;
   children: ReactNode;
 }
 // for next Only
-const TokenGatingWrapper = ({
-  config,
-  alchemyApiKey,
-  children,
-}: TokenGatingWrapperProps) => {
+export const TokenGatingWrapper: React.FunctionComponent<
+  ITokenGatingWrapperProps
+> = ({ config, alchemyApiKey, children }) => {
   const location = useLocation();
   // const navigate = useNavigate();
 
   const { address } = useAccount();
   const [authorised, setAuthorised] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [restricted, setRestricted] = useState(true);
+  const [restricted, setRestricted] = useState(false);
   const [showConnectModel, setShowConnectModel] = useState(false);
   const { chain, chains } = useNetwork();
+
+  const getChainName = (chainType: networks) => {
+    if (chainType == networks.Ethereum) {
+      return "Ethereum";
+    } else if (chainType == networks.Polygon) {
+      return "Polygon";
+    } else if (chainType == networks.Optimism) {
+      return "Optimism";
+    } else if (chainType == networks["Arbitrum One"]) {
+      return "Arbitrum One";
+    } else {
+      return "Ethereum";
+    }
+  };
 
   const getNetwork = (chainName: string) => {
     // console.log(chainName);
@@ -238,7 +250,8 @@ const TokenGatingWrapper = ({
         return;
       }
 
-      const finalNetwork = getNetwork(configData.network.toString());
+      const chainName: string = getChainName(configData.network);
+      const finalNetwork = getNetwork(chainName);
       if (!finalNetwork) return;
 
       // console.log(configData);
@@ -332,12 +345,10 @@ const TokenGatingWrapper = ({
   );
 };
 
-export default TokenGatingWrapper;
-
-export const TokenGatingUI = () => {
-  return (
-    <div>
-      <ConnectButton />
-    </div>
-  );
-};
+// const TokenGatingUI = () => {
+//   return (
+//     <div>
+//       <ConnectButton />
+//     </div>
+//   );
+// };
