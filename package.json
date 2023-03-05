@@ -16,7 +16,7 @@
   },
   "author": "Dhruv Agarwal",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Dhruv-2003/token-gating-demoApp"
