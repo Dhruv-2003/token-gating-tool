@@ -309,7 +309,7 @@ Contact: contact.dhruvagarwal@gmail.com
 
 **Packages:** Alchemy SDK , Rainbowkit , Wagmi , Ethers
 
-## Appendix
+## Acknowledgment
 
 - Built in Partnership with [Alchemy](https://www.alchemy.com/) and [Replit](https://replit.com/~) under the [Bounty](https://replit.com/bounties/@Arjun-Alchemy/token-gating-bot)
 
