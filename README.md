@@ -92,7 +92,7 @@ type configDataType = {
 
 Get an API key from [Alchemy](https://dashboard.alchemy.com/signup/?a=f8afc2202c)
 
-```http
+```javasript
 const API_KEY: any = process.env.ALCHEMY_API_KEY;
 ```
 
