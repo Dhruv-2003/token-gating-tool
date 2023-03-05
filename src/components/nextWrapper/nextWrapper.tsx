@@ -20,6 +20,9 @@ import { useRouter } from "next/router";
 import { Network, Alchemy } from "alchemy-sdk";
 import { configDataType, configType, methods, networks } from "../config/index";
 
+import styled from "styled-components";
+import { Spinner } from "@chakra-ui/react";
+
 const API_KEY: any = process.env.ALCHEMY_ID;
 
 const { chains, provider } = configureChains(
@@ -54,6 +57,7 @@ export const TokenGatingWrapper: React.FunctionComponent<
   const [authorised, setAuthorised] = useState(false);
   const [loading, setLoading] = useState(false);
   const [restricted, setRestricted] = useState(false);
+  const [message, setMessage] = useState<string | undefined>();
   const [showConnectModel, setShowConnectModel] = useState(false);
   const { chain, chains } = useNetwork();
 
@@ -301,6 +305,7 @@ export const TokenGatingWrapper: React.FunctionComponent<
 
       if (response) {
         console.log("PROTECTED ROUTE AND ACCESS ALLOWED");
+        setMessage("PROTECTED ROUTE AND ACCESS ALLOWED");
         setAuthorised(true);
         setRestricted(false);
         setLoading(false);
@@ -337,10 +342,30 @@ export const TokenGatingWrapper: React.FunctionComponent<
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        {showConnectModel && <ConnectButton />}
-        {loading && <a>Loading .....</a>}
-        {children}
-        {restricted && <a>Resrticted Access</a>}
+        {authorised ? (
+          <Content>
+            {/* {showConnectModel && <ConnectButton />}
+            {loading && <a>Loading .....</a>} */}
+            {children}
+            {/* <BottomText>
+              <p>
+                Brought to you in partnership with: &nbsp; <p1>Replit</p1>{" "}
+                &nbsp; x &nbsp; <p2>Alchemy</p2>
+              </p>
+            </BottomText> */}
+          </Content>
+        ) : (
+          <Content2>
+            {showConnectModel && <ConnectButtonUi />}
+            {loading && <LoaderUi />}
+            {!loading && restricted && !showConnectModel ? (
+              <RestrictedUi />
+            ) : (
+              <div></div>
+            )}
+            <Message>{message && message}</Message>
+          </Content2>
+        )}
       </RainbowKitProvider>
     </WagmiConfig>
   );
@@ -353,3 +378,150 @@ export const TokenGatingUI = () => {
     </div>
   );
 };
+
+export const ConnectButtonUi = () => {
+  return (
+    <ConnectUi>
+      <TopText>
+        <p>Token Gating SDK</p>
+        <p>For more information visit: </p>
+      </TopText>
+      <ConnectButton />
+      <BottomText>
+        <p>
+          Brought to you in partnership with : &nbsp;{" "}
+          <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
+          <p style={{ color: "slateblue" }}>Alchemy</p>
+        </p>
+      </BottomText>
+    </ConnectUi>
+  );
+};
+
+export const LoaderUi = () => {
+  return (
+    <ConnectUi>
+      <TopText>
+        <p>Token Gating SDK</p>
+        <p>For more information visit: </p>
+      </TopText>
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+      <p>Checking wallet for NFTs ...</p>
+      <BottomText>
+        <p>
+          Brought to you in partnership with : &nbsp;{" "}
+          <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
+          <p style={{ color: "slateblue" }}>Alchemy</p>
+        </p>
+      </BottomText>
+    </ConnectUi>
+  );
+};
+
+export const RestrictedUi = () => {
+  return (
+    <ConnectUi>
+      <TopText>
+        <p>Token Gating SDK</p>
+        <p>For more information visit: </p>
+      </TopText>
+      <Restricteddiv>
+        <p>This page is restricted to you.</p>
+        <p></p>
+      </Restricteddiv>
+      <BottomText>
+        <p>
+          Brought to you in partnership with : &nbsp;{" "}
+          <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
+          <p style={{ color: "slateblue" }}>Alchemy</p>
+        </p>
+      </BottomText>
+    </ConnectUi>
+  );
+};
+
+const Content = styled.div`
+  height: 100vh;
+  background-color: black;
+  p {
+    color: white;
+  }
+  h1 {
+    color: white;
+  }
+  a {
+    color: white;
+  }
+`;
+const Content2 = styled.div`
+  height: 100vh;
+  background-color: white;
+  a {
+    color: black;
+  }
+  p {
+    color: black;
+  }
+`;
+
+const ConnectUi = styled.div`
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  p {
+    color: black;
+    font-size: 20px;
+  }
+`;
+
+const TopText = styled.div`
+  position: fixed;
+  top: 0;
+  margin-top: 20px;
+  text-align: center;
+`;
+const Message = styled.div`
+  position: fixed;
+  top: 0;
+  margin-top: 40px;
+  text-align: center;
+`;
+const BottomText = styled.div`
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+  background-color: black;
+  border-radius: 20px;
+  p {
+    color: white;
+  }
+`;
+
+const Restricteddiv = styled.div`
+  height: 300px;
+  width: 450px;
+  padding: 20px 20px 20px 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  p {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    top: 50%;
+    height: 100%;
+  }
+`;
