@@ -9,13 +9,19 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "Token-Gating",
+    "NFT-Gating",
+    "Ethereum",
+    "Polygon",
+    "Alchemy"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
     "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs"
   },
   "author": "Dhruv Agarwal",
-  "keywords": [],
   "license": "MIT",
   "repository": {
     "type": "git",
