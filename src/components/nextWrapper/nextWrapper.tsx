@@ -340,13 +340,27 @@ export const TokenGatingWrapper: React.FunctionComponent<
       if (!configData) return;
 
       if (configData.methodName == methods.NFTCollection) {
-        return `NFT from the Collection ${configData.data.contractAddress}`;
+        return `NFT from the Collection ${configData.data.contractAddress.slice(
+          0,
+          8
+        )}`;
       } else if (configData.methodName == methods.NFTWithTokenID) {
-        return `NFT from the Collection ${configData.data.contractAddress} with the tokenId ${configData.data.tokenId}`;
+        return `NFT from the Collection ${configData.data.contractAddress.slice(
+          0,
+          8
+        )} with the tokenId ${configData.data.tokenId?.slice(0, 5)}`;
       } else if (configData.methodName == methods.TOKEN) {
-        return `Token with the contractAddress ${configData.data.contractAddress}`;
+        return `Token with the contractAddress ${configData.data.contractAddress.slice(
+          0,
+          8
+        )}`;
       } else if (configData.methodName == methods.TOKENwithAmount) {
-        return `${configData.data.amount} Tokens with the contractAddress ${configData.data.contractAddress}`;
+        return `${
+          configData.data.amount
+        } Tokens with the contractAddress ${configData.data.contractAddress.slice(
+          0,
+          8
+        )}`;
       } else {
         return `all the conditions fulfilled`;
       }
@@ -373,8 +387,13 @@ export const TokenGatingWrapper: React.FunctionComponent<
     return (
       <ConnectUi>
         <TopText>
-          <p>Token Gating SDK</p>
-          <p>For more information visit: </p>
+          <p>Token Gated WebPage </p>
+          <p>
+            Built with{" "}
+            <a href="https://www.npmjs.com/package/token-gating-sdk">
+              @token-gating-sdk
+            </a>
+          </p>
         </TopText>
         <ConnectButton />
         <Message>{message && message}</Message>
@@ -393,8 +412,13 @@ export const TokenGatingWrapper: React.FunctionComponent<
     return (
       <ConnectUi>
         <TopText>
-          <p>Token Gating SDK</p>
-          <p>For more information visit: </p>
+          <p>Token Gated WebPage </p>
+          <p>
+            Built with{" "}
+            <a href="https://www.npmjs.com/package/token-gating-sdk">
+              @token-gating-sdk
+            </a>
+          </p>
         </TopText>
         <Spinner
           thickness="4px"
@@ -420,8 +444,13 @@ export const TokenGatingWrapper: React.FunctionComponent<
     return (
       <ConnectUi>
         <TopText>
-          <p>Token Gating SDK</p>
-          <p>For more information visit: </p>
+          <p>Token Gated WebPage </p>
+          <p>
+            Built with{" "}
+            <a href="https://www.npmjs.com/package/token-gating-sdk">
+              @token-gating-sdk
+            </a>
+          </p>
         </TopText>
         <Restricteddiv>
           <p>This page is restricted for you.</p>
@@ -469,6 +498,7 @@ export const TokenGatingUI = () => {
     </div>
   );
 };
+
 const Content = styled.div`
   height: 100vh;
   background-color: black;
@@ -508,12 +538,17 @@ const ConnectUi = styled.div`
 const TopText = styled.div`
   margin-bottom: 60px;
   text-align: center;
+  font-weight: 700;
+  a {
+    text-decoration: underlined;
+  }
 `;
 
 const Message = styled.div`
   margin-top: 20px;
   color: black;
   font-size: 30px;
+  text-align: center;
 `;
 
 const BottomText = styled.div`
@@ -542,7 +577,7 @@ const Restricteddiv = styled.div`
     font-size: 30px;
     text-align: center;
     vertical-align: middle;
-    top: 50%;
-    height: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
   }
 `;
