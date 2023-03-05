@@ -20,6 +20,10 @@ import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from "alchemy-sdk";
 import { configDataType, configType, methods, networks } from "../config/index";
 
+import styled from "styled-components";
+import { Spinner } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
+
 const API_KEY: any = process.env.ALCHEMY_ID;
 
 const { chains, provider } = configureChains(

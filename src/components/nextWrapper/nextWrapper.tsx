@@ -22,6 +22,7 @@ import { configDataType, configType, methods, networks } from "../config/index";
 
 import styled from "styled-components";
 import { Spinner } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 
@@ -58,6 +59,7 @@ export const TokenGatingWrapper: React.FunctionComponent<
   const [loading, setLoading] = useState(false);
   const [restricted, setRestricted] = useState(false);
   const [message, setMessage] = useState<string | undefined>();
+  const [configData, setConfigData] = useState<configDataType | undefined>();
   const [showConnectModel, setShowConnectModel] = useState(false);
   const { chain, chains } = useNetwork();
 
@@ -93,6 +95,7 @@ export const TokenGatingWrapper: React.FunctionComponent<
       setLoading(false);
       setShowConnectModel(true);
       console.log("WRONG NETWORK DETECETED");
+      setMessage(`Wrong Network Detected , Change the Network to ${chainName}`);
       // show the connect model and ask to change the network
       return;
     }
@@ -219,6 +222,7 @@ export const TokenGatingWrapper: React.FunctionComponent<
     setLoading(true);
     if (!address) {
       console.log("LOGIN FIRST");
+      setMessage("Connect Wallet to go ahead");
       setLoading(false);
       setShowConnectModel(true);
       return;
@@ -242,7 +246,7 @@ export const TokenGatingWrapper: React.FunctionComponent<
       })
     ) {
       console.log("PROTECTED ROUTE");
-
+      setMessage("This Page is Protected");
       configData = config.find((v, i, arr) => {
         if (v.path == path) {
           return v;
@@ -253,6 +257,8 @@ export const TokenGatingWrapper: React.FunctionComponent<
         console.log("NO CONFIG DATA FOUND");
         return;
       }
+
+      setConfigData(configData);
 
       // console.log(configData);
       const chainName: string = getChainName(configData.network);
@@ -305,23 +311,47 @@ export const TokenGatingWrapper: React.FunctionComponent<
 
       if (response) {
         console.log("PROTECTED ROUTE AND ACCESS ALLOWED");
-        setMessage("PROTECTED ROUTE AND ACCESS ALLOWED");
+        setMessage("You are Authorized to access the page , Redirecting ...");
         setAuthorised(true);
         setRestricted(false);
         setLoading(false);
         /// show the component , of not approved
       } else {
         console.log("PROTECTED ROUTE AND ACCESS NOT ALLOWED");
+        setMessage(
+          "You are not Authorized to access the page , fulfill the above conditions"
+        );
+        // setSh
         setRestricted(true);
         setAuthorised(false);
         setLoading(false);
-        // void router.push({
-        //   pathname: "/restricted",
-        // });
       }
     } else {
       setLoading(false);
       console.log("NOT A PROTECTED ROUTE");
+      setMessage("Not a Protected Webpage , Redirecting ...");
+      setAuthorised(true);
+      setRestricted(false);
+    }
+  };
+
+  const getMessage = () => {
+    try {
+      if (!configData) return;
+
+      if (configData.methodName == methods.NFTCollection) {
+        return `NFT from the Collection ${configData.data.contractAddress}`;
+      } else if (configData.methodName == methods.NFTWithTokenID) {
+        return `NFT from the Collection ${configData.data.contractAddress} with the tokenId ${configData.data.tokenId}`;
+      } else if (configData.methodName == methods.TOKEN) {
+        return `Token with the contractAddress ${configData.data.contractAddress}`;
+      } else if (configData.methodName == methods.TOKENwithAmount) {
+        return `${configData.data.amount} Tokens with the contractAddress ${configData.data.contractAddress}`;
+      } else {
+        return `all the conditions fulfilled`;
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -339,35 +369,96 @@ export const TokenGatingWrapper: React.FunctionComponent<
     };
   }, [router, router.events, address, authorised, chain]);
 
+  const ConnectButtonUi = () => {
+    return (
+      <ConnectUi>
+        <TopText>
+          <p>Token Gating SDK</p>
+          <p>For more information visit: </p>
+        </TopText>
+        <ConnectButton />
+        <Message>{message && message}</Message>
+        <BottomText>
+          <p>
+            Brought to you in partnership with : &nbsp;{" "}
+            <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
+            <p style={{ color: "slateblue" }}>Alchemy</p>
+          </p>
+        </BottomText>
+      </ConnectUi>
+    );
+  };
+
+  const LoaderUi = () => {
+    return (
+      <ConnectUi>
+        <TopText>
+          <p>Token Gating SDK</p>
+          <p>For more information visit: </p>
+        </TopText>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+        <p>Checking wallet for NFTs and Tokens...</p>
+        <Message>{message && message}</Message>
+        <BottomText>
+          <p>
+            Brought to you in partnership with : &nbsp;{" "}
+            <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
+            <p style={{ color: "slateblue" }}>Alchemy</p>
+          </p>
+        </BottomText>
+      </ConnectUi>
+    );
+  };
+
+  const RestrictedUi = () => {
+    return (
+      <ConnectUi>
+        <TopText>
+          <p>Token Gating SDK</p>
+          <p>For more information visit: </p>
+        </TopText>
+        <Restricteddiv>
+          <p>This page is restricted for you.</p>
+          <p>Your wallet must have {getMessage()}</p>
+        </Restricteddiv>
+        <Message>{message && message}</Message>
+        <BottomText>
+          <p>
+            Brought to you in partnership with : &nbsp;{" "}
+            <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
+            <p style={{ color: "slateblue" }}>Alchemy</p>
+          </p>
+        </BottomText>
+      </ConnectUi>
+    );
+  };
+
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        {authorised ? (
-          <Content>
-            {/* {showConnectModel && <ConnectButton />}
-            {loading && <a>Loading .....</a>} */}
-            {children}
-            {/* <BottomText>
-              <p>
-                Brought to you in partnership with: &nbsp; <p1>Replit</p1>{" "}
-                &nbsp; x &nbsp; <p2>Alchemy</p2>
-              </p>
-            </BottomText> */}
-          </Content>
-        ) : (
-          <Content2>
-            {showConnectModel && <ConnectButtonUi />}
-            {loading && <LoaderUi />}
-            {!loading && restricted && !showConnectModel ? (
-              <RestrictedUi />
-            ) : (
-              <div></div>
-            )}
-            <Message>{message && message}</Message>
-          </Content2>
-        )}
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ChakraProvider>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider chains={chains}>
+          {authorised ? (
+            <Content>{children}</Content>
+          ) : (
+            <Content2>
+              {showConnectModel && <ConnectButtonUi />}
+              {loading && <LoaderUi />}
+              {!loading && restricted && !showConnectModel ? (
+                <RestrictedUi />
+              ) : (
+                <div></div>
+              )}
+            </Content2>
+          )}
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ChakraProvider>
   );
 };
 
@@ -378,74 +469,6 @@ export const TokenGatingUI = () => {
     </div>
   );
 };
-
-export const ConnectButtonUi = () => {
-  return (
-    <ConnectUi>
-      <TopText>
-        <p>Token Gating SDK</p>
-        <p>For more information visit: </p>
-      </TopText>
-      <ConnectButton />
-      <BottomText>
-        <p>
-          Brought to you in partnership with : &nbsp;{" "}
-          <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
-          <p style={{ color: "slateblue" }}>Alchemy</p>
-        </p>
-      </BottomText>
-    </ConnectUi>
-  );
-};
-
-export const LoaderUi = () => {
-  return (
-    <ConnectUi>
-      <TopText>
-        <p>Token Gating SDK</p>
-        <p>For more information visit: </p>
-      </TopText>
-      <Spinner
-        thickness="4px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        color="blue.500"
-        size="xl"
-      />
-      <p>Checking wallet for NFTs ...</p>
-      <BottomText>
-        <p>
-          Brought to you in partnership with : &nbsp;{" "}
-          <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
-          <p style={{ color: "slateblue" }}>Alchemy</p>
-        </p>
-      </BottomText>
-    </ConnectUi>
-  );
-};
-
-export const RestrictedUi = () => {
-  return (
-    <ConnectUi>
-      <TopText>
-        <p>Token Gating SDK</p>
-        <p>For more information visit: </p>
-      </TopText>
-      <Restricteddiv>
-        <p>This page is restricted to you.</p>
-        <p></p>
-      </Restricteddiv>
-      <BottomText>
-        <p>
-          Brought to you in partnership with : &nbsp;{" "}
-          <p style={{ color: "orange" }}>Replit</p> &nbsp; x &nbsp;{" "}
-          <p style={{ color: "slateblue" }}>Alchemy</p>
-        </p>
-      </BottomText>
-    </ConnectUi>
-  );
-};
-
 const Content = styled.div`
   height: 100vh;
   background-color: black;
@@ -461,7 +484,7 @@ const Content = styled.div`
 `;
 const Content2 = styled.div`
   height: 100vh;
-  background-color: white;
+  background-color: #edf2ef;
   a {
     color: black;
   }
@@ -478,30 +501,27 @@ const ConnectUi = styled.div`
   flex-direction: column;
   p {
     color: black;
-    font-size: 20px;
+    font-size: 30px;
   }
 `;
 
 const TopText = styled.div`
-  position: fixed;
-  top: 0;
-  margin-top: 20px;
+  margin-bottom: 60px;
   text-align: center;
 `;
+
 const Message = styled.div`
-  position: fixed;
-  top: 0;
-  margin-top: 40px;
-  text-align: center;
+  margin-top: 20px;
+  color: black;
+  font-size: 30px;
 `;
+
 const BottomText = styled.div`
-  position: fixed;
-  bottom: 0;
-  margin-bottom: 20px;
   text-align: center;
   padding: 10px 20px 10px 20px;
   background-color: black;
   border-radius: 20px;
+  margin-top: 60px;
   p {
     color: white;
   }
@@ -509,10 +529,11 @@ const BottomText = styled.div`
 
 const Restricteddiv = styled.div`
   height: 300px;
-  width: 450px;
+  width: 550px;
   padding: 20px 20px 20px 20px;
   border: 2px solid black;
   border-radius: 10px;
+  background-color: white;
   p {
     justify-content: center;
     align-items: center;
