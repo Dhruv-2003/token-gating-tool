@@ -16,7 +16,7 @@ import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/router.js";
 import { Network, Alchemy } from "alchemy-sdk";
 import { configDataType, configType, methods, networks } from "../config/index";
 
