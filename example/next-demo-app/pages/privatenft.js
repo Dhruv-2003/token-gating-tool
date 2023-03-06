@@ -1,7 +1,12 @@
 import React from "react";
+import styles from "../styles/Home.module.css";
 
 const privatenft = () => {
-  return <div style={{ color: "white" }}>privatenft</div>;
+  return (
+    <div className={styles.centerdiv}>
+      <a>Private Page gated with NFT</a>
+    </div>
+  );
 };
 
 export default privatenft;

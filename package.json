@@ -25,7 +25,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dhruv-2003/token-gating-demoApp"
+    "url": "https://github.com/Dhruv-2003/token-gating-tool"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
