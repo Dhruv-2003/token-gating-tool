@@ -23,7 +23,7 @@ import { configDataType, configType, methods, networks } from "../config/index";
 import styled from "styled-components";
 import { Spinner } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import { useLocation, BrowserRouter } from "react-router-dom";
 
 const API_KEY: any = process.env.ALCHEMY_ID;
 
@@ -470,25 +470,27 @@ export const TokenGatingWrapper: React.FunctionComponent<
   };
 
   return (
-    <ChakraProvider>
-      <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
-          {authorised ? (
-            <Content>{children}</Content>
-          ) : (
-            <Content2>
-              {showConnectModel && <ConnectButtonUi />}
-              {loading && <LoaderUi />}
-              {!loading && restricted && !showConnectModel ? (
-                <RestrictedUi />
-              ) : (
-                <div></div>
-              )}
-            </Content2>
-          )}
-        </RainbowKitProvider>
-      </WagmiConfig>
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider>
+        <WagmiConfig client={wagmiClient}>
+          <RainbowKitProvider chains={chains}>
+            {authorised ? (
+              <Content>{children}</Content>
+            ) : (
+              <Content2>
+                {showConnectModel && <ConnectButtonUi />}
+                {loading && <LoaderUi />}
+                {!loading && restricted && !showConnectModel ? (
+                  <RestrictedUi />
+                ) : (
+                  <div></div>
+                )}
+              </Content2>
+            )}
+          </RainbowKitProvider>
+        </WagmiConfig>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 };
 
