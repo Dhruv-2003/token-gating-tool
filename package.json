@@ -52,12 +52,12 @@
     "dotenv": "^16.0.3",
     "ethers": "^5.7.2",
     "styled-components": "^5.3.8",
-    "wagmi": "^0.11.7"
+    "wagmi": "^0.11.7",
+    "react-router-dom": "^6.8.2",
+    "next": "^13.2.2"
   },
   "peerDependencies": {
-    "next": "^13.2.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.2"
+    "react-dom": "^18.2.0"
   }
 }
