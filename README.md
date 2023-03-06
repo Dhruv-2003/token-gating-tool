@@ -4,6 +4,10 @@ A Simple and Modern SDK For Implementing Token - Gating in your webpage , in jus
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
+## Demo
+
+![token-gating-demo](https://user-images.githubusercontent.com/91938348/223115760-618d4f09-364f-4352-ae22-68335d7ab03a.gif)
+
 ## Introduction
 
 Website owners can verify the ownership of NFTs and Tokens in the users wallet , and accordingly grant or restrict the access to a Webpage with the help of this SDK.
