@@ -10,6 +10,8 @@ Website owners can verify the ownership of NFTs and Tokens in the users wallet ,
 
 It is Ready to use out of the Box , for all type of Applications , Next , React, etc. with just simple configurations steps , can be followed in the tutorial below.
 
+<img width="1311" alt="Screenshot 2023-03-06 at 11 56 26 AM" src="https://user-images.githubusercontent.com/91938348/223038182-8d508a8f-e684-4f11-919b-f6bfcc15ab6e.png">
+
 ## Features
 
 1 . Supports all the Major Networks (Mainnet) :
@@ -296,6 +298,17 @@ export const configData: configType = [
   },
 ];
 ```
+
+## Screenshots
+
+
+<img width="1311" alt="Screenshot 2023-03-06 at 11 56 48 AM" src="https://user-images.githubusercontent.com/91938348/223038142-03c8b3e9-9be8-4b31-b6c2-d61e4f7242c8.png">
+
+<img width="1311" alt="Screenshot 2023-03-06 at 11 56 37 AM" src="https://user-images.githubusercontent.com/91938348/223038205-830d7585-9574-412e-bfef-e2ebc0d4f5ee.png">
+
+<img width="1311" alt="Screenshot 2023-03-06 at 11 57 45 AM" src="https://user-images.githubusercontent.com/91938348/223038610-7f078e38-0e26-4e37-ba8f-87bc65a013cc.png">
+
+
 
 ## Appendix
 
