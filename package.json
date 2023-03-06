@@ -1,6 +1,6 @@
 {
   "name": "token-gating-sdk",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "A token gating SDK to restrict access to Next and React Application for NFT and Token Holders",
   "main": "dist/esm/index.js",
   "types": "./dist/index.d.ts",
@@ -25,7 +25,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dhruv-2003/token-gating-demoApp"
+    "url": "https://github.com/Dhruv-2003/token-gating-tool"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
