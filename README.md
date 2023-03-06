@@ -6,7 +6,7 @@ A Simple and Modern SDK For Implementing Token - Gating in your webpage , in jus
 
 ## Introduction
 
-Website owners can verify the ownership of NFTs and Tokens in the users wallet , and accodingly grant or restrict the access to a Webpage with the help of this SDK.
+Website owners can verify the ownership of NFTs and Tokens in the users wallet , and accordingly grant or restrict the access to a Webpage with the help of this SDK.
 
 It is Ready to use out of the Box , for all type of Applications , Next , React, etc. with just simple configurations steps , can be followed in the tutorial below.
 
