@@ -541,7 +541,7 @@ const TopText = styled.div`
   text-align: center;
   font-weight: 700;
   a {
-    text-decoration: underlined;
+    text-decoration: underline;
   }
 `;
 
