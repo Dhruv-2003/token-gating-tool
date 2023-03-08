@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 
-import { NextGatingWrapper } from "token-gating-sdk";
+import { NextGatingWrapper, UniversalGatingWrapper } from "token-gating-sdk";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { configData } from "../config/config";
