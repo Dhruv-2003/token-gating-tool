@@ -8,6 +8,9 @@ A Simple and Modern SDK For Implementing Token - Gating in your webpage , in jus
 
 ![token-gating-demo](https://user-images.githubusercontent.com/91938348/223115760-618d4f09-364f-4352-ae22-68335d7ab03a.gif)
 
+The REPLIT TEMPLATE for a Next.js Application with token-gating-sdk can be found here :
+[Replit-Template](https://replit.com/@DhruvAgarwal24/Token-gating-next-demo?v=1)
+
 ## Introduction
 
 Website owners can verify the ownership of NFTs and Tokens in the users wallet , and accordingly grant or restrict the access to a Webpage with the help of this SDK.
@@ -340,7 +343,7 @@ Looking forward for more such experience and a Big Thanks to Alchemy & Replit Te
 
 - Built in Partnership with [Alchemy](https://www.alchemy.com/) and [Replit](https://replit.com/~) under the [Bounty](https://replit.com/bounties/@Arjun-Alchemy/token-gating-bot)
 
-- `**Alchemy SDK**` was used to fetch the needed data from blockchain. We used `verifyNftOwnership` ,`getOwnersForNft` and `getTokenBalances` methods , to get the needed data and check the logic , to authorise or restrict the user from accessing the website. This also helped us to enable this service on 4 Main-nets , `Ethereum` , `Polygon` , `Arbitrum One` & `Optimism`.
+- `Alchemy SDK` was used to fetch the needed data from blockchain. We used `verifyNftOwnership` ,`getOwnersForNft` and `getTokenBalances` methods , to get the needed data and check the logic , to authorise or restrict the user from accessing the website. This also helped us to enable this service on 4 Main-nets , `Ethereum` , `Polygon` , `Arbitrum One` & `Optimism`.
 
 ## Authors
 
