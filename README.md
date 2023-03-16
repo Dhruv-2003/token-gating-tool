@@ -340,7 +340,7 @@ Looking forward for more such experience and a Big Thanks to Alchemy & Replit Te
 
 - Built in Partnership with [Alchemy](https://www.alchemy.com/) and [Replit](https://replit.com/~) under the [Bounty](https://replit.com/bounties/@Arjun-Alchemy/token-gating-bot)
 
-- Alchemy SDK was used to fetch the needed data from blockchain. We used `verifyNftOwnership` ,`getOwnersForNft` and `getTokenBalances` methods , to get the needed data and check the logic , to authorise or restrict the user from accessing the website. This also helped us to enable this service on 4 Main-nets , `Ethereum` , `Polygon` , `Arbitrum One` & `Optimism`.
+- `**Alchemy SDK**` was used to fetch the needed data from blockchain. We used `verifyNftOwnership` ,`getOwnersForNft` and `getTokenBalances` methods , to get the needed data and check the logic , to authorise or restrict the user from accessing the website. This also helped us to enable this service on 4 Main-nets , `Ethereum` , `Polygon` , `Arbitrum One` & `Optimism`.
 
 ## Authors
 
