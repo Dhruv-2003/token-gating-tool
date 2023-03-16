@@ -305,14 +305,11 @@ export const configData: configType = [
 
 ## Screenshots
 
-
 <img width="1311" alt="Screenshot 2023-03-06 at 11 56 48 AM" src="https://user-images.githubusercontent.com/91938348/223038142-03c8b3e9-9be8-4b31-b6c2-d61e4f7242c8.png">
 
 <img width="1311" alt="Screenshot 2023-03-06 at 11 56 37 AM" src="https://user-images.githubusercontent.com/91938348/223038205-830d7585-9574-412e-bfef-e2ebc0d4f5ee.png">
 
 <img width="1311" alt="Screenshot 2023-03-06 at 11 57 45 AM" src="https://user-images.githubusercontent.com/91938348/223038610-7f078e38-0e26-4e37-ba8f-87bc65a013cc.png">
-
-
 
 ## Appendix
 
@@ -326,9 +323,24 @@ Contact: contact.dhruvagarwal@gmail.com
 
 **Packages:** Alchemy SDK , Rainbowkit , Wagmi , Ethers
 
+## How we built it ??
+
+- Token - gating was implemented by simply checking the conditions set by the Website manager in the config , based on the data from blockchain . Here `Alchemy - SDK` , came into play , which was used to fetch the needed data , and because of the different API endpoints available , made it easy for us to just simply add this part. We used `verifyNftOwnership` , `getOwnersForNft` and `getTokenBalances` methods , to get the needed data and check the logic , to authorise or restrict the user from accessing the website. This also helped us to enable this service on 4 Main-nets , `Ethereum` , `Polygon` , `Arbitrum One` & `Optimism`. `RainbowKit` + `Wagmi` were used to handle wallet and other network logic , this enabled the user to use most of the major wallets out their in the market , to connect with.
+
+- I had worked with Token-Gating prior to this , therefore I knew the method to add the code to a website , but converting that code into a usable component, that could be integrated to a new website in Simple Steps was the key . So the next step was to figure out the approach to implement Token-gating to any website which was the most challenging part of the bounty , We had multiple ones in mind , But finally we finalised to create an SDK , that could be used in Next , React and other web Applications.
+- We created an `SDK` or `React Library` with wrapper components in `TypeScript` , to ensure the best experience for the developers to interact with it. Our main aim was to make it as simple as for a newbie to add it to a website. We achieved this by handling most of the logic and extra steps on our component side , in order to make it just plugin & play. We also added an extensive documentation for the developers , to integrate the SDK .
+- Next we had to figure out the Page Routing or Navigation , Luckily , Next had `Next/Router` , which handles all these things , in the backend ,we just had to get the Routers current route and check the conditions to allow access. Moreover for React applications , we used , `window.location`property from Browsers. We will be adding `React-router-dom` support too in near future .
+- We created an UI component too , that would ensure that non authorised users are not allowed to view the content of protected page , we used `Styled-Components` & `chakra-ui`. The UI - UX was kept simple , for the best end user experience . Pure CSS could not be used , as we were not able to configure the bundler for bundle CSS files.
+- Then came the next big challenge to actually bundle the Components , make the package as small as possible , We used `Rollup` here and some extra plugins to bundle the whole thing together , we had to resolve a lot of big errors here , as it was the first time developing a full scale UI SDK. But after creating 10 versions , the final working version was live. We bundled into `ESM` types , meaning it supported `ES6` syntax, which now most of the browsers support. Setting Up `package.json` with the exports , files , module and configuring it to point to `dist` is an important step too , while building SDKs.
+- Andd !! In this way we created this `token-gating-sdk` in almost a week of work , lot of research and solving bugs 😅 to produce the best final version. This was indeed a great learning experience , to work around with SDKs and React Libraries along with a Web3 twist. and a lot of other packages like `Alchemy-SDK` , `Wagmi` , `Rainbowkit` , etc.
+
+Looking forward for more such experience and a Big Thanks to Alchemy & Replit Teams for giving me this great opportunity .
+
 ## Acknowledgment
 
 - Built in Partnership with [Alchemy](https://www.alchemy.com/) and [Replit](https://replit.com/~) under the [Bounty](https://replit.com/bounties/@Arjun-Alchemy/token-gating-bot)
+
+- Alchemy SDK was used to fetch the needed data from blockchain. We used `verifyNftOwnership` ,`getOwnersForNft` and `getTokenBalances` methods , to get the needed data and check the logic , to authorise or restrict the user from accessing the website. This also helped us to enable this service on 4 Main-nets , `Ethereum` , `Polygon` , `Arbitrum One` & `Optimism`.
 
 ## Authors
 
