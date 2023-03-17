@@ -8,6 +8,10 @@ A Simple and Modern SDK For Implementing Token - Gating in your webpage , in jus
 
 ![token-gating-demo](https://user-images.githubusercontent.com/91938348/223115760-618d4f09-364f-4352-ae22-68335d7ab03a.gif)
 
+A Full Demo Video can be looked up here :
+
+https://www.loom.com/share/136962ce378145a8a46271271415206d
+
 The REPLIT TEMPLATE for a Next.js Application with token-gating-sdk can be found here :
 [Replit-Template](https://replit.com/@DhruvAgarwal24/Token-gating-next-demo?v=1)
 
