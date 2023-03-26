@@ -217,9 +217,9 @@ export const TokenGatingWrapper: React.FunctionComponent<
   // 4. Owns a particular attribute from a particular NFT collection 
   // The trait should match trait type and value.
   const checkNFTAttributes = async (
-  	userAddress: string,
-  	contractAddress: string,
-  	attributes: { value: string, trait_type: string } [],
+    userAddress: string,
+    contractAddress: string,
+    attributes: { value: string, trait_type: string } [],
     network: Network,
     alchemyApiKey: string  	
   ) => {
