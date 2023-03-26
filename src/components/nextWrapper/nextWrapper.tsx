@@ -223,14 +223,14 @@ export const TokenGatingWrapper: React.FunctionComponent<
     network: Network,
     alchemyApiKey: string  	
   ) => { 
-  	try {
-  	  const settings = {
-  	    apiKey: alchemyApiKey, // Replace with your Alchemy API Key.
-  			network: network, // Replace with your network.
+    try {
+      const settings = {
+        apiKey: alchemyApiKey, // Replace with your Alchemy API Key.
+        network: network, // Replace with your network.
       };
   		
-  	  const alchemy = new Alchemy(settings);
-  		
+      const alchemy = new Alchemy(settings);
+  	  
       console.log("Checking for the attributes");
   		
       const response = await alchemy.nft.getNftsForOwnerIterator(userAddress);
