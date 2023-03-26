@@ -32,4 +32,15 @@ export const configData: configType = [
       amount: 100000000,
     },
   },
+  {
+    path: "/privateattributes",
+    methodName: methods.NFTWithAttributes,
+    network: networks.Ethereum,
+    data: {
+      contractAddress: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+      attributes: [ 
+      	{ value: "letter", trait_type: "Character Set" },
+      ],
+    },
+  },
 ];

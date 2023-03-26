@@ -10,6 +10,7 @@ export enum methods {
   "NFTCollection",
   "TOKEN",
   "TOKENwithAmount",
+  "NFTWithAttributes"
 }
 
 export type configDataType = {
@@ -20,6 +21,7 @@ export type configDataType = {
     contractAddress: string;
     tokenId?: string;
     amount?: number;
+    attributes?: { value: string, trait_type: string } [];
   };
 };
 
