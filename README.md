@@ -93,6 +93,7 @@ type configDataType = {
     contractAddress: string,
     tokenId?: string,
     amount?: number,
+    attributes?: { value: string, trait_type: string } [],
   },
 }[];
 ```
@@ -167,7 +168,7 @@ configDataType = {
     contractAddress: string;  // contractAddress of Token or NFT
     tokenId?: string;  // Token Id of the NFT (if req.)
     amount?: number;  // Amount of tokens (if req.)
-    attributes?: { value: string, trait_type: string }; // Array of NFT Attributes (if req.)
+    attributes?: { value: string, trait_type: string } []; // Array of NFT Attributes (if req.)
   };
 }[]
 ```
