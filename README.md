@@ -238,7 +238,7 @@ Need to add contractAddress and amount of the token
   },
 ```
 
-- `NFTWithAttributes` for NFT with a Specific Atrtibute (trait type and value) from a collection, E.g. BAYC. Fur -> Pink.
+- `NFTWithAttributes` for NFT with an Specific Attribute (trait type and value) from a collection, E.g. BAYC. Fur -> Pink.
 
 Need to add contractAddress and an array of attributes of the NFT
 
