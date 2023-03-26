@@ -222,43 +222,43 @@ export const TokenGatingWrapper: React.FunctionComponent<
     attributes: { value: string, trait_type: string } [],
     network: Network,
     alchemyApiKey: string  	
-  ) => {
+  ) => { 
   	try {
-  		const settings = {
-  			apiKey: alchemyApiKey, // Replace with your Alchemy API Key.
+  	  const settings = {
+  	    apiKey: alchemyApiKey, // Replace with your Alchemy API Key.
   			network: network, // Replace with your network.
-  		};
+      };
   		
-  		const alchemy = new Alchemy(settings);
+  	  const alchemy = new Alchemy(settings);
   		
-  		console.log("Checking for the attributes");
+      console.log("Checking for the attributes");
   		
-  		const response = await alchemy.nft.getNftsForOwnerIterator(userAddress);
-  		//console.log(response);
+      const response = await alchemy.nft.getNftsForOwnerIterator(userAddress);
+      //console.log(response);
   		
-  		for await (const nft of response) {
-  			if (nft.contract.address === contractAddress) {
-  				const nftAttributes = nft.rawMetadata?.attributes;
-  				if (nftAttributes) {
-  					for (let x = 0; x < nftAttributes.length; x++) {
-  						for (let y = 0; y < attributes.length; y++) {
-								if (
-									nftAttributes[x].trait_type === attributes[y].trait_type &&
-									nftAttributes[x].value === attributes[y].value
-								) {
-									setAuthorised(true);
-									return true;
-								}
-							}
-  					}
-  				}
-  			}
-  		}
-  		setAuthorised(false);
-  		return false;
-  	} catch (error) {
-  		console.log(error);
-  	}
+      for await (const nft of response) {
+        if (nft.contract.address === contractAddress) {
+          const nftAttributes = nft.rawMetadata?.attributes;
+          if (nftAttributes) {
+            for (let x = 0; x < nftAttributes.length; x++) {
+              for (let y = 0; y < attributes.length; y++) {
+                if (
+                  nftAttributes[x].trait_type === attributes[y].trait_type &&
+                  nftAttributes[x].value === attributes[y].value
+                ) {
+                  setAuthorised(true);
+                  return true;
+                }
+              }
+            }
+          }
+        }
+      }
+      setAuthorised(false);
+      return false;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // check the URL and accordingly the condition
