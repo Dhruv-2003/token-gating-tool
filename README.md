@@ -167,13 +167,14 @@ configDataType = {
     contractAddress: string;  // contractAddress of Token or NFT
     tokenId?: string;  // Token Id of the NFT (if req.)
     amount?: number;  // Amount of tokens (if req.)
+    attributes?: { value: string, trait_type: string }; // Array of NFT Attributes (if req.)
   };
 }[]
 ```
 
 ### Methods
 
-There are currently 4 methods available , as follows :
+There are currently 5 methods available , as follows :
 
 - `NFTWithTokenID` for NFT with a Specific Token ID from a collection, E.g. BAYC No. 8378
 
@@ -237,6 +238,22 @@ Need to add contractAddress and amount of the token
   },
 ```
 
+- `NFTWithAttributes` for NFT with a Specific Atrtibute (trait type and value) from a collection, E.g. BAYC. Fur -> Pink.
+
+Need to add contractAddress and an array of attributes of the NFT
+
+```javascript
+{
+    path: "/page",
+    methodName: methods.NFTWithTokenID,
+    network: networks.Ethereum,
+    data: {
+      contractAddress: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      attributes: [ { value: "Pink", trait_type: "Fur" } ]
+    },
+  },
+```
+
 These can be accessed by importing methods
 
 ```javascript
@@ -245,6 +262,7 @@ export enum methods {
   "NFTCollection",
   "TOKEN",
   "TOKENwithAmount",
+  "NFTWithAttributes"
 }
 ```
 
@@ -270,7 +288,7 @@ export enum networks {
 
 ## Example
 
-Here is an example config File , for all the 4 types of Methods. Refer the same for more info -
+Here is an example config File , for all the 5 types of Methods. Refer the same for more info -
 
 ```javascript
 import { configType, methods, networks } from "token-gating-sdk";
@@ -305,6 +323,17 @@ export const configData: configType = [
     data: {
       contractAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       amount: 100000000,
+    },
+  },
+  {
+    path: "/privateattributes",
+    methodName: methods.NFTWithAttributes,
+    network: networks.Ethereum,
+    data: {
+      contractAddress: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+      attributes: [ 
+      	{ value: "letter", trait_type: "Character Set" },
+      ],
     },
   },
 ];
